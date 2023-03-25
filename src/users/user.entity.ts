@@ -24,10 +24,10 @@ export class User extends BaseEntity {
     @Column({nullable: false})
     salt: string;
 
-    @Column({nullable: false, type: 'varchar', length: 64})
+    @Column({nullable: true, type: 'varchar', length: 64})
     confirmationToken: string;
 
-    @Column({nullable: false, type: 'varchar', length: 64})
+    @Column({nullable: true, type: 'varchar', length: 64})
     recoverToken: string;
 
     @CreateDateColumn()

@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, ValidationPipe } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { ReturnUserDto } from './dtos/return-user.dto';
 import { UsersService } from './users.service';
@@ -9,7 +9,7 @@ export class UsersController {
 
     @Post()
     async createAdminUser(
-        @Body() createUserDto: CreateUserDto
+        @Body(ValidationPipe) createUserDto: CreateUserDto
     ): Promise<ReturnUserDto> {
         const user = await this.usersService.createAdminUser(createUserDto)
 

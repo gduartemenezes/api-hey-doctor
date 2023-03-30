@@ -12,13 +12,6 @@ export class UsersRepository extends Repository<User> {
     constructor(private dataSource: DataSource) {
         super(User, dataSource.createEntityManager())
     }
-
-    public async getById(id: string): Promise<User> {
-        return this.findOneBy({ id })
-    }
-    public async getByEmail(email: string): Promise<User> {
-        return this.findOneBy({ email })
-    }
     async createUser(
         createUserDto: CreateUserDto,
         role: UserRole

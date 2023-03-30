@@ -1,4 +1,4 @@
-import { ConflictException, Injectable, InternalServerErrorException, UnprocessableEntityException } from '@nestjs/common';
+import { ConflictException, Injectable, InternalServerErrorException, NotFoundException, UnprocessableEntityException } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UserRole } from './user-roles.enum';
 import { User } from './user.entity';
@@ -21,6 +21,15 @@ export class UsersService {
         } else {
             return this.usersRepository.createUser(createUserDto, UserRole.ADMIN)
         }
+    }
+
+
+    async findByUserId(id: string): Promise<User> {
+        const user = await this.usersRepository.findOne({where:{id}, select: ['id', 'name', 'role', 'email']})
+
+        if(!user) throw new NotFoundException('Usuário não encontrado')
+
+        return user
     }
 
 }

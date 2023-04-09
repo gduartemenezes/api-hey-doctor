@@ -1,4 +1,5 @@
 import { IsEmail, IsNotEmpty, MaxLength, MinLength } from "class-validator"
+import { UserRole } from "../user-roles.enum"
 
 
 export class CreateUserDto {
@@ -12,6 +13,11 @@ export class CreateUserDto {
         message: 'O endereço de email deve ter menos de 200 caracteres'
     })
     email: string
+
+    @IsNotEmpty({
+        message: "Informe o nome do usuário"
+    })
+    role: UserRole
 
     @IsNotEmpty({
         message: "Informe o nome do usuário"

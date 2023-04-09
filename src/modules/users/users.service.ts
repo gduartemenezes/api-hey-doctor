@@ -10,6 +10,7 @@ import { typeOrmConfig, typeOrmDataSourceOptions } from 'src/configs/typeorm.con
 import { InjectRepository } from '@nestjs/typeorm';
 import { UsersRepository } from './users.repository';
 import { UpdateUserDto } from './dtos/update-user.dto';
+import { FindUsersQueryDto } from './dtos/find-users-query-dto';
 
 @Injectable()
 export class UsersService {
@@ -58,5 +59,13 @@ export class UsersService {
             throw new NotFoundException('Não foi encontrado um usuário com o ID informado')
         }
     }
+
+    async findUsers(
+        queryDto: FindUsersQueryDto
+    ): Promise<{users: User[], total: number}> {
+        const users = await this.usersRepository.findUsers(queryDto)
+        return users
+    }
+
 
 }

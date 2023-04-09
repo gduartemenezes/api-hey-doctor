@@ -18,6 +18,7 @@ export class UsersController {
 
     @Post()
     @Role(UserRole.ADMIN)
+    @Role(UserRole.DOCTOR)
     async createAdminUser(
         @Body(ValidationPipe) createUserDto: CreateUserDto
     ): Promise<ReturnUserDto> {
@@ -31,6 +32,7 @@ export class UsersController {
 
     @Get(':id')
     @Role(UserRole.ADMIN)
+    @Role(UserRole.DOCTOR)
     async findUserByid(@Param('id') id): Promise<ReturnUserDto> {
         const user = await this.usersService.findByUserId(id)
         return {
@@ -55,6 +57,7 @@ export class UsersController {
 
     @Delete(':id')
     @Role(UserRole.ADMIN)
+    @Role(UserRole.DOCTOR)
     async deleteUser(@Param('id') id: string) {
         await this.usersService.deleteUser(id)
         return {message: 'Usuário removido com sucesso'}

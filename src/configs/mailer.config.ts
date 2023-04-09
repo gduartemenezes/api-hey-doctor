@@ -12,13 +12,11 @@ export const mailerConfig: MailerOptions = {
         }
     },
     transport: {
-        pool: true,
-        host: "smtp.gmail.com",
-        port: 465,
-        secure: true, // use TLS
-        auth: {
-          user: "gduartemenezes@gmail.com",
-          pass: "c4l4br3s4#G3*",
-        },
-      }}
-
+      host: "smtp.mailtrap.io",
+      port: 2525,
+      auth: {
+        user: "56e8c823d3aba8",
+        pass: "eeb4262325ffb1"
+      }
+    }
+  }

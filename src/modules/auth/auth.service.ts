@@ -19,7 +19,7 @@ export class AuthService {
         if(createUserDto.password !== createUserDto.passwordConfirmation) {
             throw new UnprocessableEntityException('As senhas não conferem')
         } else {
-            const user = await this.usersRepository.createUser(createUserDto, UserRole.USER)
+            const user = await this.usersRepository.createUser(createUserDto)
             
             const mail = {
                 to: user.email,

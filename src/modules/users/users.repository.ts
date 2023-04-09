@@ -15,9 +15,8 @@ export class UsersRepository extends Repository<User> {
     }
     async createUser(
         createUserDto: CreateUserDto,
-        role: UserRole
     ): Promise<User> {
-        const { email, name, password } = createUserDto;
+        const { email, name, password, role } = createUserDto;
         const user = new User()
 
         user.email = email

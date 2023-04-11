@@ -9,18 +9,20 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
 import { LoggerInterceptor } from './interceptors/logger.interceptor';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { mailerConfig } from './configs/mailer.config';
+import { MedicalRecordModule } from './modules/medical-record/medical-record.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot(typeOrmConfig),
     WinstonModule.forRoot(winstonConfig),
     MailerModule.forRoot(mailerConfig),
     UsersModule,
-    AuthModule
+    AuthModule,
+    MedicalRecordModule
   ],
   controllers: [],
   providers: [{
     provide: APP_INTERCEPTOR,
     useClass: LoggerInterceptor
-  }],
+  }, ],
 })
 export class AppModule {}

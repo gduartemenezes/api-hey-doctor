@@ -30,6 +30,9 @@ export class User extends BaseEntity {
     @Column({nullable: true, type: 'varchar', length: 64})
     recoverToken: string;
 
+    // relations
+    
+
     @CreateDateColumn()
     createdAt: Date;
     

@@ -9,9 +9,11 @@ import { Repository } from 'typeorm';
 import { MedicalRecord } from '../medical-record/medical-record.entity';
 import { DoctorWallet } from '../doctor-wallet/doctor-wallet.entity';
 import { Appointment } from './appointment.entity';
-import { CreateAppointmentDto } from './dtos/create-appointment.dto';
-import { FindAppointmentsQueryDto } from './dtos/find-appointments-query.dto';
-import { UpdateAppointmentDto } from './dtos/update-appointment.dto';
+import {
+  FindAppointmentsQueryDto,
+  CreateAppointmentDto,
+  UpdateAppointmentDto,
+} from './dtos/';
 
 class MedicalRecordRepository extends Repository<MedicalRecord> {
   async findById(id: string): Promise<MedicalRecord> {

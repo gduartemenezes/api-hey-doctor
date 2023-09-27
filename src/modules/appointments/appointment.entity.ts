@@ -7,13 +7,9 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Patient } from '../patient/patient.entity';
-import { User } from '../users/user.entity';
 import { MedicalRecord } from '../medical-record/medical-record.entity';
 import { DoctorWallet } from '../doctor-wallet/doctor-wallet.entity';
-import { PaymentMethod } from './enums/payment-method.enum';
-import { AppointmentStatus } from './enums/appointment-status.enum';
-import { PaymentStatus } from './enums/payment-status.enum';
+import { PaymentMethod, AppointmentStatus, PaymentStatus } from './enums/';
 
 @Entity()
 export class Appointment extends BaseEntity {

@@ -2,7 +2,7 @@ import { IsNotEmpty, MaxLength, MinLength, IsDate } from 'class-validator';
 import { PaymentMethod } from '../enums/payment-method.enum';
 import { PaymentStatus } from '../enums/payment-status.enum';
 
-export class CreatAppointmentDto {
+export class CreateAppointmentDto {
   @IsNotEmpty({
     message: 'Informe o motivo da consulta',
   })

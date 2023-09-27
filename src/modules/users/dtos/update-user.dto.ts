@@ -1,23 +1,25 @@
-import { IsEmail, IsOptional, IsString } from "class-validator";
-import { UserRole } from "../user-roles.enum";
+import { IsEmail, IsOptional, IsString } from 'class-validator';
+import { UserRole } from '../user-roles.enum';
 
 export class UpdateUserDto {
-    @IsOptional()
-    @IsString({
-        message: "Informe um nome de usuário válido"
-    })
-    name: string;
+  @IsOptional()
+  @IsString({
+    message: 'Informe um nome de usuário válido',
+  })
+  name: string;
 
-    @IsOptional()
-    @IsEmail({},{
-        message: "Informe um email válido"
-    })
-    email: string;
+  @IsOptional()
+  @IsEmail(
+    {},
+    {
+      message: 'Informe um email válido',
+    },
+  )
+  email: string;
 
-    @IsOptional()
-    role: UserRole;
+  @IsOptional()
+  role: UserRole;
 
-    @IsOptional()
-    status: boolean;
-
+  @IsOptional()
+  status: boolean;
 }

@@ -1,6 +1,6 @@
 import { BaseEntity, Column, CreateDateColumn, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn, Unique, UpdateDateColumn } from "typeorm";
-import { PatientGender } from "./patient-gender.enum";
-import { PatientOrigin } from "./patient-origin.enum";
+import { PatientGender } from "./enums/patient-gender.enum";
+import { PatientOrigin } from "./enums/patient-origin.enum";
 import { Appointment } from "../appointments/appointment.entity";
 import { MedicalRecord } from "../medical-record/medical-record.entity";
 
@@ -43,9 +43,9 @@ export class Patient extends BaseEntity {
 
 
     @CreateDateColumn()
-    createdAt: Date;
+    created_at: Date;
     
     @UpdateDateColumn()
-    updatedAt: Date;
+    updated_at: Date;
     
 }

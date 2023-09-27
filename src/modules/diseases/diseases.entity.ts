@@ -11,8 +11,8 @@ export class Disease extends BaseEntity {
     medical_record: MedicalRecord
 
     @CreateDateColumn()
-    createdAt: Date;
+    created_at: Date;
 
     @UpdateDateColumn()
-    updatedAt: Date;
+    updated_at: Date;
 }

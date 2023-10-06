@@ -42,7 +42,7 @@ export class UsersController {
 
     return {
       appointment,
-      message: 'Administrador cadastro com sucesso',
+      message: 'Agendamento cadastrado com sucesso',
     };
   }
 
@@ -54,7 +54,7 @@ export class UsersController {
     const appointment = await this.appointmentService.findById(id);
     return {
       appointment,
-      message: 'Usuário encontrado',
+      message: 'Agendamento encontrado',
     };
   }
 

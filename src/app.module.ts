@@ -11,7 +11,7 @@ import { MailerModule } from '@nestjs-modules/mailer';
 import { mailerConfig } from './configs/mailer.config';
 import { PatientModule } from './modules/patient/patient.module';
 import { DoctorWalletModule } from './modules/doctor-wallet/doctor-wallet.module';
-import { AppointmentsModule } from './modules/appointments/appointments.module';
+import { AppointmentModule } from './modules/appointments/appointments.module';
 import { DiseasesModule } from './modules/diseases/diseases.module';
 import { Prescription } from './modules/prescriptions/prescriptions.entity';
 @Module({
@@ -23,7 +23,7 @@ import { Prescription } from './modules/prescriptions/prescriptions.entity';
     AuthModule,
     PatientModule,
     DoctorWalletModule,
-    AppointmentsModule,
+    AppointmentModule,
     DiseasesModule,
     Prescription,
   ],

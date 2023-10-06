@@ -7,7 +7,6 @@ import {
   Get,
   Param,
   Patch,
-  ForbiddenException,
   Delete,
   Query,
 } from '@nestjs/common';
@@ -21,12 +20,11 @@ import {
 } from './dtos/';
 import { UserRole } from '../users/user-roles.enum';
 import { Role } from '../auth/role.decorator';
-import { GetUser } from '../auth/get-user.decorator';
 import { PatientService } from './patient.service';
 
-@Controller('users')
+@Controller('patient')
 @UseGuards(AuthGuard(), RolesGuard)
-export class UsersController {
+export class PatientController {
   constructor(private patientService: PatientService) {}
 
   @Post()

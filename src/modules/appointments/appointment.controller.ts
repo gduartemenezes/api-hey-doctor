@@ -6,7 +6,6 @@ import {
   UseGuards,
   Get,
   Param,
-  ForbiddenException,
   Delete,
   Query,
   Patch,
@@ -22,11 +21,9 @@ import {
   ReturnAppointmentDto,
   UpdateAppointmentDto,
 } from './dtos/';
-import { GetUser } from '../auth/get-user.decorator';
-import { User } from '../users/user.entity';
-@Controller('appointments')
+@Controller('appointment')
 @UseGuards(AuthGuard(), RolesGuard)
-export class UsersController {
+export class AppointmentController {
   constructor(private appointmentService: AppointmentService) {}
 
   @Post()
@@ -39,7 +36,6 @@ export class UsersController {
     const appointment = await this.appointmentService.createAppointment(
       createAppointmentDto,
     );
-
     return {
       appointment,
       message: 'Agendamento cadastrado com sucesso',

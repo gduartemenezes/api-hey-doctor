@@ -6,8 +6,10 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToOne,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
+import { DoctorWallet } from '../doctor-wallet/doctor-wallet.entity';
 @Entity()
 @Unique(['email'])
 export class User extends BaseEntity {
@@ -39,6 +41,8 @@ export class User extends BaseEntity {
   recoverToken: string;
 
   // relations
+  @OneToOne(() => DoctorWallet, (doctor_wallet) => doctor_wallet.doctor)
+  doctor_wallet: DoctorWallet;
 
   @CreateDateColumn()
   created_at: Date;

@@ -7,9 +7,9 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { MedicalRecord } from '../medical-record/medical-record.entity';
 import { DoctorWallet } from '../doctor-wallet/doctor-wallet.entity';
 import { PaymentMethod, AppointmentStatus, PaymentStatus } from './enums/';
+import { Patient } from '../patient/patient.entity';
 
 @Entity()
 export class Appointment extends BaseEntity {
@@ -53,11 +53,8 @@ export class Appointment extends BaseEntity {
   schedule: Date;
 
   //relations
-  @ManyToOne(
-    () => MedicalRecord,
-    (medical_record) => medical_record.appointments,
-  )
-  medical_record: MedicalRecord;
+  @ManyToOne(() => Patient, (patient) => patient.appointments)
+  patient: Patient;
 
   @ManyToOne(() => DoctorWallet, (doctor_wallet) => doctor_wallet.appointments)
   doctor_wallet: DoctorWallet;

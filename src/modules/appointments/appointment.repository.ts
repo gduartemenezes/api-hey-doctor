@@ -2,9 +2,9 @@ import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { DataSource, Repository } from 'typeorm';
 import { Appointment } from './appointment.entity';
 import { CreateAppointmentDto } from './dtos/create-appointment.dto';
-import { MedicalRecord } from '../medical-record/medical-record.entity';
 import { DoctorWallet } from '../doctor-wallet/doctor-wallet.entity';
 import { FindAppointmentsQueryDto } from './dtos/find-appointments-query.dto';
+import { Patient } from '../patient/patient.entity';
 
 @Injectable()
 export class AppointmentRepository extends Repository<Appointment> {
@@ -14,7 +14,7 @@ export class AppointmentRepository extends Repository<Appointment> {
 
   async createAppointment(
     createAppointmentDto: CreateAppointmentDto,
-    medicalRecord: MedicalRecord,
+    patient: Patient,
     doctorWallet: DoctorWallet,
   ): Promise<Appointment> {
     const { reason, observations, payment_method, payment_status, schedule } =
@@ -22,7 +22,7 @@ export class AppointmentRepository extends Repository<Appointment> {
     const appointment = new Appointment();
     appointment.reason = reason;
     appointment.observations = observations;
-    appointment.medical_record = medicalRecord;
+    appointment.patient = patient;
     appointment.doctor_wallet = doctorWallet;
     appointment.schedule = schedule;
     appointment.payment_method = payment_method;

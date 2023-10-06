@@ -1,18 +1,25 @@
-import { BaseEntity, CreateDateColumn, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { MedicalRecord } from "../medical-record/medical-record.entity";
+import {
+  BaseEntity,
+  CreateDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+import { Patient } from '../patient/patient.entity';
 
 @Entity()
 export class Disease extends BaseEntity {
-    @PrimaryGeneratedColumn('uuid')
-    id: string
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-    // relations
-    @ManyToOne(()=> MedicalRecord, (medical_record) => medical_record.diseases)
-    medical_record: MedicalRecord
+  // relations
+  @ManyToOne(() => Patient, (patient) => patient.diseases)
+  patient: Patient;
 
-    @CreateDateColumn()
-    created_at: Date;
+  @CreateDateColumn()
+  created_at: Date;
 
-    @UpdateDateColumn()
-    updated_at: Date;
+  @UpdateDateColumn()
+  updated_at: Date;
 }

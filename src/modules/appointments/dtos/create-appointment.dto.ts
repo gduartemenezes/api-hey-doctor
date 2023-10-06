@@ -14,7 +14,7 @@ export class CreateAppointmentDto {
   @IsNotEmpty({
     message: 'Informe o paciente',
   })
-  medical_record_id: string;
+  patient_id: string;
 
   @IsNotEmpty({
     message: 'Informe o médico',

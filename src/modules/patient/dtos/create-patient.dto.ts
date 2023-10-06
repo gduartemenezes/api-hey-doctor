@@ -5,6 +5,7 @@ import {
   IsDate,
   IsEmail,
   IsEnum,
+  IsOptional,
 } from 'class-validator';
 import { PatientGender } from '../enums/patient-gender.enum';
 import { PatientOrigin } from '../enums/patient-origin.enum';
@@ -40,6 +41,7 @@ export class CreatePatientDto {
   })
   primary_contact: string;
 
+  @IsOptional()
   @MaxLength(11, {
     message: 'O número para contato deve ter no máximo 11 caracteres',
   })

@@ -3,14 +3,16 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  OneToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   Unique,
   UpdateDateColumn,
 } from 'typeorm';
 import { PatientGender } from './enums/patient-gender.enum';
 import { PatientOrigin } from './enums/patient-origin.enum';
-import { MedicalRecord } from '../medical-record/medical-record.entity';
+import { Appointment } from '../appointments/appointment.entity';
+import { Disease } from '../diseases/diseases.entity';
+import { Prescription } from '../prescriptions/prescriptions.entity';
 
 @Entity()
 @Unique(['cpf'])
@@ -56,8 +58,14 @@ export class Patient extends BaseEntity {
   @Column({ nullable: true, type: 'varchar', length: 200 })
   address: string;
   // relations
-  @OneToOne(() => MedicalRecord, (medical_record) => medical_record.patient)
-  medical_record: MedicalRecord;
+  @OneToMany(() => Appointment, (appointment) => appointment.patient)
+  appointments: Appointment[];
+
+  @OneToMany(() => Prescription, (prescription) => prescription.patient)
+  prescriptions: Prescription[];
+
+  @OneToMany(() => Disease, (disease) => disease.patient)
+  diseases: Disease[];
 
   @CreateDateColumn()
   created_at: Date;

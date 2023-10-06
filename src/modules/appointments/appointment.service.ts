@@ -5,52 +5,36 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AppointmentRepository } from './appointment.repository';
-import { Repository } from 'typeorm';
-import { MedicalRecord } from '../medical-record/medical-record.entity';
-import { DoctorWallet } from '../doctor-wallet/doctor-wallet.entity';
 import { Appointment } from './appointment.entity';
 import {
   FindAppointmentsQueryDto,
   CreateAppointmentDto,
   UpdateAppointmentDto,
 } from './dtos/';
-
-class MedicalRecordRepository extends Repository<MedicalRecord> {
-  async findById(id: string): Promise<MedicalRecord> {
-    return Promise.resolve(new MedicalRecord());
-  }
-}
-class DoctorWalletRepository extends Repository<DoctorWallet> {
-  async findById(id: string): Promise<DoctorWallet> {
-    return Promise.resolve(new DoctorWallet());
-  }
-}
+import { DoctorWalletService } from '../doctor-wallet/doctor-wallet.service';
+import { PatientService } from '../patient/patient.service';
 
 @Injectable()
 export class AppointmentService {
   constructor(
     @InjectRepository(AppointmentRepository)
     private appointmentRepository: AppointmentRepository,
-    @InjectRepository(MedicalRecordRepository)
-    private medicalRecordRepository: MedicalRecordRepository,
-    @InjectRepository(DoctorWalletRepository)
-    private doctorWalletRepository: DoctorWalletRepository,
+    private doctorWalletService: DoctorWalletService,
+    private patientService: PatientService,
   ) {}
 
   async createAppointment(
     createAppointmentDto: CreateAppointmentDto,
   ): Promise<Appointment> {
-    const { doctor_wallet_id, medical_record_id } = createAppointmentDto;
-    const doctorWallet = await this.doctorWalletRepository.findById(
+    const { doctor_wallet_id, patient_id } = createAppointmentDto;
+    const doctorWallet = await this.doctorWalletService.findById(
       doctor_wallet_id,
     );
-    const medicalRecord = await this.medicalRecordRepository.findById(
-      medical_record_id,
-    );
+    const patient = await this.patientService.findByPatientId(patient_id);
 
     const appointment = this.appointmentRepository.createAppointment(
       createAppointmentDto,
-      medicalRecord,
+      patient,
       doctorWallet,
     );
 
